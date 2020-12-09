@@ -1,0 +1,306 @@
+body{
+  padding: 24px;
+  font-family: sans-serif;
+  position: relative;
+}
+
+.margin-zero{
+    margin: 0px;
+}
+
+body a{
+    color: black;
+    text-decoration: none;}
+
+.mid-black a{
+    color: rgb(26, 23, 23);
+}
+
+
+.header-left{
+    float: left;
+    padding-bottom: 16px;   
+}
+
+.a-inline{
+    display: inline-block;
+}
+
+
+
+
+#website-name{
+    display: inline-block;
+}
+
+#website-name a{
+    font-size: 16px;
+}
+
+
+#website-name a span{
+    font-size: 32px;
+}
+
+
+.header-right{
+    position: absolute;
+    right: 0;
+    bottom: 16px;
+}
+
+.header-right a{
+    font-size: 28px;
+}
+
+.header{
+    position: relative;
+    border-bottom: 1px solid rgb(110, 109, 109);
+    width: 100%;
+    overflow: hidden;
+}
+
+.content{
+    padding-top: 40px;
+}
+
+.blue-clr{
+    color: #1bb1e3;
+}
+
+
+.left-content{
+    float: left;
+     width: 20%;
+ }
+ 
+ .right-content{
+    float: right;
+     width: 80%;
+ }
+ 
+ 
+ .category ul{
+     list-style-type: none;
+     padding: 0px;
+     margin: 0px;
+ }
+
+ .category li{
+    padding-left: 4px;
+    line-height: 24px;
+ }
+
+ .category a{
+     font-size: 14px;
+     
+ }
+
+ .category h4{
+     margin: 0;
+     padding-bottom: 12px;
+ }
+ .category{
+     padding-bottom: 28px;
+ }
+
+ .job_titles li:last-child{
+     line-height: 32px;
+ }
+
+ .job_titles  li:last-child a{
+     color: #1bb1e3;
+ }
+ 
+ 
+ 
+ #filter-by-alphabets ul {
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
+     overflow: hidden;
+     display:flex;
+     justify-content: space-between;
+     
+   }
+
+
+   
+   #filter-by-alphabets li {
+     float: left;
+     background-color: #1bb1e3;
+    
+     
+   }
+   
+   #filter-by-alphabets li:last-child {
+     border-right: none;
+    
+ 
+   }
+
+
+
+   #filter-by-alphabets li a:hover{
+        background-color: #111;
+   }
+   #filter-by-alphabets li:first-child a:hover{
+        background-color: #1bb1e3;
+   }
+
+   #filter-by-alphabets li:first-child img{
+     padding: 10px 8px 2px 8px;
+     filter: brightness(0) invert(1);
+   }
+   
+   #filter-by-alphabets li a {
+     display: block;
+     color: white;
+     width: 12px;
+     font-size: 18px;
+     text-align: center;
+     padding: 8px 12px;
+     text-decoration: none;
+   }
+
+
+
+   #left-container{
+     float: left;
+ }
+ #right-container{
+     float: right;
+ }
+
+ #addEmployee{
+     background-color: #1bb1e3;
+     border: #1bb1e3;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px;
+    
+ }
+   
+ #search-by-input{
+     display: inline-block;
+ }
+ 
+ #filter-by{
+     display: inline-block;
+     margin-left: 32px;
+ }
+ 
+ #filter-by select{
+     height: 36px;
+     width: 176px;
+ }
+ 
+ .filter-by-input{
+     padding: 24px 0px 8px 0px;
+     overflow: hidden;
+ }
+
+ #search-input{
+    margin-left: 8px;
+    width: 240px;
+    height: 36px;
+    background: url(search.png) no-repeat 4px;
+    background-size: 16px 16px;
+    padding-left:30px;
+ }
+
+ #search-btn{
+    height: 36px;
+    width: 68px;
+    background-color: green;
+    border:green;
+    color: white;
+    margin-left: 24px;
+ }
+ 
+
+ .note{
+  overflow: hidden; 
+  width: 100%; 
+  padding: 8px 0px;
+ }
+
+ .note a{
+     font-size: 12px;
+ }
+
+ .note span{
+    font-weight: 600;
+     color: #000;
+ }
+
+
+
+ .form-popup{
+    border: 3px solid #f1f1f1;
+    overflow: hidden;
+    z-index: 9; 
+    margin: 0;
+    padding: 2%;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,100px);
+    display: none;
+   
+    
+  
+ }
+
+ .form-popup label{
+   
+
+ }
+
+ .form-popup form div{
+     margin: 8px;
+ }
+ .form-popup input{
+    float: right;
+    
+ }
+
+ 
+ .main-content{
+     border: 1px solid  ;
+    padding: 16px;
+     display: grid;
+     grid-template-columns:  repeat(4, 1fr)    ;
+     grid-template-rows: repeat(auto-fill, 74px);
+     column-gap: 8px;
+     row-gap: 20px;
+     min-height: 300px;
+     margin-bottom: 80px;
+ }
+
+ .employee{
+    padding: 8px;
+    border: 1px solid black;
+     height: 56px;
+      width: 220px;
+ }
+
+ .employee-img{
+    position: relative;
+    
+ }
+
+ .employee-img img{
+     border: 1px solid black;
+ }
+
+ .a-small{
+     font-size: 12px;
+ }
+ 
+ 
+ 
+ 
+ 
+
