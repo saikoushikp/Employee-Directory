@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="form-popup" id="addEmployeeForm">
+      <div style="width: 100%;">
+        <form id="employeeForm">
+          <div>
+            <img width="48" height="48">
+            <button>Choose</button>
+          </div>
+          <div>
+            <label for="firstName">First&nbsp;Name&nbsp;&colon;&nbsp;</label>
+           <input name="fname" type="text" />
+          </div>
+          <div>
+            <label for="lastName">Last&nbsp;Name&nbsp;&colon;&nbsp;</label>
+          <input name="lname" type="text" />
+          </div>
+          <div>
+            <label for="preferredName">Preferred&nbsp;Name&nbsp;&colon;&nbsp;</label>
+          <input name="pname" type="text" />
+          </div>
+          <div>
+            <label for="email">Email&nbsp;&colon;&nbsp;</label>
+          <input name="email" type="text" />
+          </div>
+          <div>
+            <label for="jobTitle">Job&nbsp;Title&nbsp;&colon;&nbsp;</label>
+          <input name="jobTitle" type="text" />
+          </div>
+          <div>
+            <label for="office">Office&nbsp;&colon;&nbsp;</label>
+          <input name="office" type="text" />
+          </div>
+          <div>
+            <label for="department">Department&nbsp;&colon;&nbsp;</label>
+          <input name="department" type="text" />
+          </div>
+         <div>
+          <label for="phoneNumber">Phone&nbsp;Number&nbsp;&colon;&nbsp;</label>
+          <input name="phoneNumber" type="text" />
+         </div>
+         <div>
+          <label for="skypeId">Skype&nbsp;ID&nbsp;&colon;&nbsp;</label>
+          <input name="skypeId" type="text" />
+         </div>
+         <div style="padding-top: 16px;">
+           <button id="close" onclick="closeForm()" style="float: left;">Cancel</button>
+           <button type="button" id="employeeSubmit" style="float: right; " onclick="submitEmployee()">Submit</button>
+         </div>
+          </form>
+      </div>
+    </div>
+    <div class="header mid-black">
+      <div class="header-left">
+        <div class="a-inline">
+          <img src="logo.jpeg" height="52" />
+        </div>
+        <div class="a-inline" id="website-name">
+          <a
+            ><span class="blue-clr">Employee Directory <br /></span> The
+            Ultimate People Directory Experience</a
+          >
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="a-inline">
+          <a><span class="blue-clr">Welcome,&nbsp;</span>Andrew Philips</a>
+        </div>
+        <div class="a-inline">
+          <img src="man128.png" width="44" height="44" />
+        </div>
+      </div>
+    </div>
+    <div></div>
+
+    <div class="content">
+      <div class="left-content">
+        <div class="department category mid-black">
+          <h4>Departments</h4>
+          <ul>
+            <li><a href="#">IT&nbsp;&lpar;<span>0</span>&rpar;</a></li>
+            <li>
+              <a href="#">Human Resources&nbsp;&lpar;<span>0</span>&rpar;</a>
+            </li>
+            <li><a href="#">MD&nbsp;&lpar;<span>0</span>&rpar;</a></li>
+            <li><a href="#">Sales&nbsp;&lpar;<span>0</span>&rpar;</a></li>
+          </ul>
+        </div>
+        <div class="offices category mid-black">
+          <h4>Offices</h4>
+          <ul>
+            <li><a href="#">Seattle&nbsp;&lpar;<span>0</span>&rpar;</a></li>
+            <li><a href="#">India&nbsp;&lpar;<span>0</span>&rpar;</a></li>
+          </ul>
+        </div>
+        <div class="job_titles category mid-black">
+          <h4>Job Titles</h4>
+          <ul>
+            <li>
+              <a href="#"
+                >SharePoint Practice Head&nbsp;&lpar;<span>0</span>&rpar;</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                >.Net Development Lead&nbsp;&lpar;<span>0</span>&rpar;</a
+              >
+            </li>
+            <li>
+              <a href="#">Recuriting Expert&nbsp;&lpar;<span>0</span>&rpar;</a>
+            </li>
+            <li>
+              <a href="#">BI Developer&nbsp;&lpar;<span>0</span>&rpar;</a>
+            </li>
+            <li>
+              <a href="#">Business Analyst&nbsp;&lpar;<span>0</span>&rpar;</a>
+            </li>
+            <li>
+              <a href="#">view more</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="right-content">
+        <div class="filter-container">
+          <div id="filter-by-alphabets">
+            <ul>
+              <li><img src="user.png" width="20px" height="16px"</li>
+              <li><a href="#">A</a></li>
+              <li><a href="#">B</a></li>
+              <li><a href="#">C</a></li>
+              <li><a href="#">D</a></li>
+              <li><a href="#">E</a></li>
+              <li><a href="#">F</a></li>
+              <li><a href="#">G</a></li>
+              <li><a href="#">H</a></li>
+              <li><a href="#">I</a></li>
+              <li><a href="#">J</a></li>
+              <li><a href="#">K</a></li>
+              <li><a href="#">L</a></li>
+              <li><a href="#">M</a></li>
+              <li><a href="#">N</a></li>
+              <li><a href="#">O</a></li>
+              <li><a href="#">P</a></li>
+              <li><a href="#">Q</a></li>
+              <li><a href="#">R</a></li>
+              <li><a href="#">S</a></li>
+              <li><a href="#">T</a></li>
+              <li><a href="#">U</a></li>
+              <li><a href="#">V</a></li>
+              <li><a href="#">W</a></li>
+              <li><a href="#">X</a></li>
+              <li><a href="#">Y</a></li>
+              <li><a href="#">Z</a></li>
+            </ul>
+          </div>
+          <div class="filter-by-input">
+            <div id="left-container">
+              <div id="search-by-input">
+                <a>Search</a>
+                <input
+                  type="search"
+                  placeholder="Enter any keyword"
+                  name="search"
+                  id="search-input"
+                />
+                <input id="search-btn" type="submit" value="Clear" />
+              </div>
+              <div id="filter-by">
+                <a>Filter by</a>
+                <select name="employee" id="filter">
+                  <option value="preferredname">Preferred Name</option>
+                </select>
+              </div>
+            </div>
+            <div id="right-container">
+              <button id="addEmployee" type="button" onclick="openForm()">Add Employee</button>
+            </div>
+          </div>
+        </div>
+        <div class="mid-black note">
+          <a><span>Note:</span>&nbsp;Please use the advanced filter options to
+            refine your results</a>
+        </div>
+
+        <div class="main-content" id="employee-content">
+          <div class="employee">
+            <div class="a-inline employee-img">
+              <img src="man128.png" width="56" height="56" >
+            </div>
+            <div class="a-inline"">
+              <div><h4 class="margin-zero"> Anthony Morris</h4></div>
+              <div><a class="a-small">SharePoint Practice Head</a></div>
+              <div><a class="a-small" >IT Department</a></div>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+   <script src="script.js"></script>
+  </body>
+</html>
