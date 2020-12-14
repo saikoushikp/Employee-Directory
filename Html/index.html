@@ -5,57 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    
   </head>
   <body>
     <div class="form-popup" id="addEmployeeForm">
-      <div style="width: 100%;">
-        <form id="employeeForm">
-          <div>
-            <img width="48" height="48">
-            <button>Choose</button>
-          </div>
-          <div>
-            <label for="firstName">First&nbsp;Name&nbsp;&colon;&nbsp;</label>
-           <input name="fname" type="text" />
-          </div>
-          <div>
-            <label for="lastName">Last&nbsp;Name&nbsp;&colon;&nbsp;</label>
-          <input name="lname" type="text" />
-          </div>
-          <div>
-            <label for="preferredName">Preferred&nbsp;Name&nbsp;&colon;&nbsp;</label>
-          <input name="pname" type="text" />
-          </div>
-          <div>
-            <label for="email">Email&nbsp;&colon;&nbsp;</label>
-          <input name="email" type="text" />
-          </div> 
-          <div>
-            <label for="jobTitle">Job&nbsp;Title&nbsp;&colon;&nbsp;</label>
-          <input name="jobTitle" type="text" />
-          </div>
-          <div>
-            <label for="office">Office&nbsp;&colon;&nbsp;</label>
-          <input name="office" type="text" />
-          </div>
-          <div>
-            <label for="department">Department&nbsp;&colon;&nbsp;</label>
-          <input name="department" type="text" />
-          </div>
+        <form id="employee_form" novalidate>
          <div>
-          <label for="phoneNumber">Phone&nbsp;Number&nbsp;&colon;&nbsp;</label>
-          <input name="phoneNumber" type="text" />
+          <div class="item a-inline" >
+            <div class="item-label">
+              <p>First Name:</p>
+            </div>
+            <div class="item-input">
+                <input id="fname" type="text">
+                <span id="fname_error" class="error"></span>
+            </div>
+          </div>
+
+          <div   class="item a-inline" >
+            <div class="item-label">
+              <p>Last Name:</p>
+            </div>
+            <div class="item-input">
+                <input id="lname" type="text">
+                <span id="lname_error" class="error"></span>
+            </div>
+          </div>
          </div>
-         <div>
-          <label for="skypeId">Skype&nbsp;ID&nbsp;&colon;&nbsp;</label>
-          <input name="skypeId" type="text" />
-         </div>
-         <div style="padding-top: 16px;">
-           <button id="close" onclick="closeForm()" style="float: left;">Cancel</button>
-           <button type="button" id="employeeSubmit" style="float: right; " onclick="submitEmployee()">Submit</button>
-         </div>
-          </form>
-      </div>
+
+
+         <div class="item" >
+          <div class="item-label">
+            <p>Preferred Name:</p>
+          </div>
+          <div class="item-input">
+              <input id="pname" type="text" disabled>
+          </div>
+        </div>
+        
+        <div class="item" >
+          <div class="item-label">
+            <p>Email:</p>
+          </div>
+          <div class="item-input">
+              <input id="email" type="email">
+              <span id="email_error" class="error"></span>
+          </div>
+        </div>
+
+
+        <div class="item">
+          <div>
+            <div class="item-label">
+              <p>Job Title:</p>
+            </div>
+            <div class="flex-div"  >
+               <div class="item-input">
+                 <input id="job_title" type="text">
+                 <span id="job_title_error" class="error"></span>  
+               </div>
+               <div class="input-middle">--or--</div>
+               <div class="input-last" >
+                 <select id="job_title_select" class="width-100"  > 
+                  <option>Select</option>
+                </select>
+               </div>
+            </div>
+          </div>
+        </div>
+
+      
+        <div class="item">
+          <div>
+            <div class="item-label">
+              <p>Office:</p>
+            </div>
+            <div class="flex-div"  >
+               <div class="item-input">
+                 <input id="office" type="text">
+                 <span id="office_error" class="error"></span>  
+               </div>
+               <div class="input-middle">--or--</div>
+               <div class="input-last" >
+                 <select id="office_select" class="width-100"  > 
+                  <option>Select</option>
+                </select>
+               </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div>
+            <div class="item-label">
+              <p>Department:</p>
+            </div>
+            <div class="flex-div"  >
+               <div class="item-input">
+                 <input id="department" type="text">
+                 <span id="department_error" class="error"></span>  
+               </div>
+               <div class="input-middle">--or--</div>
+               <div class="input-last" >
+                 <select id="department_select" class="width-100"  > 
+                  <option>Select</option>
+                </select>
+               </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="item" >
+          <div class="item-label">
+            <p>Phone Number:</p>
+          </div>
+          <div class="item-input">
+              <input id="phone_number" type="text">
+              <span id="phone_number_error" class="error"></span>
+          </div>
+        </div>
+
+
+        <div class="item" >
+          <div class="item-label">
+            <p>Skype ID:</p>
+          </div>
+          <div class="item-input">
+              <input id="skype_id" type="text">
+              <span id="skype_id_error" class="error"></span>
+          </div>
+        </div>
+        <div style="padding: 16px 8px;">
+          <button type="button" onclick="closeForm()" style="float: left;">Cancel</button>
+          <button type="button" onclick="validation()" style="float: right;">Submit</button>
+        </div>
+      
+         
+    
+        </form>
     </div>
     <div class="header mid-black">
       <div class="header-left">
@@ -78,55 +165,10 @@
         </div>
       </div>
     </div>
-    <div></div>
+    
 
     <div class="content">
-      <div class="left-content">
-        <div class="department category mid-black">
-          <h4>Departments</h4>
-          <ul>
-            <li><a href="#">IT&nbsp;&lpar;<span>0</span>&rpar;</a></li>
-            <li>
-              <a href="#">Human Resources&nbsp;&lpar;<span>0</span>&rpar;</a>
-            </li>
-            <li><a href="#">MD&nbsp;&lpar;<span>0</span>&rpar;</a></li>
-            <li><a href="#">Sales&nbsp;&lpar;<span>0</span>&rpar;</a></li>
-          </ul>
-        </div>
-        <div class="offices category mid-black">
-          <h4>Offices</h4>
-          <ul>
-            <li><a href="#">Seattle&nbsp;&lpar;<span>0</span>&rpar;</a></li>
-            <li><a href="#">India&nbsp;&lpar;<span>0</span>&rpar;</a></li>
-          </ul>
-        </div>
-        <div class="job_titles category mid-black">
-          <h4>Job Titles</h4>
-          <ul>
-            <li>
-              <a href="#"
-                >SharePoint Practice Head&nbsp;&lpar;<span>0</span>&rpar;</a
-              >
-            </li>
-            <li>
-              <a href="#"
-                >.Net Development Lead&nbsp;&lpar;<span>0</span>&rpar;</a
-              >
-            </li>
-            <li>
-              <a href="#">Recuriting Expert&nbsp;&lpar;<span>0</span>&rpar;</a>
-            </li>
-            <li>
-              <a href="#">BI Developer&nbsp;&lpar;<span>0</span>&rpar;</a>
-            </li>
-            <li>
-              <a href="#">Business Analyst&nbsp;&lpar;<span>0</span>&rpar;</a>
-            </li>
-            <li>
-              <a href="#">view more</a>
-            </li>
-          </ul>
-        </div>
+      <div class="left-content" id="filter-content">
       </div>
       <div class="right-content">
         <div class="filter-container">
