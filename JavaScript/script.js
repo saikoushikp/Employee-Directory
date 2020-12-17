@@ -1,8 +1,8 @@
 function openForm() {
-  
+  addPrefer()
   var formdiv = document.getElementById("addEmployeeForm")
   formdiv.style.display = "block";
-  addPrefer()
+  
 
 }
 
