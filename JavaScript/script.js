@@ -1,181 +1,96 @@
 function openForm() {
+  
   var formdiv = document.getElementById("addEmployeeForm")
-  formdiv.innerHTML = ` <form id="employee_form" novalidate>
- <div>
-  <div class="item a-inline" >
-    <div class="item-label">
-      <p>First Name:</p>
-    </div>
-    <div class="item-input">
-        <input id="fname" type="text">
-        <span id="fname_error" class="error"></span>
-    </div>
-  </div>
-
-  <div   class="item a-inline" >
-    <div class="item-label">
-      <p>Last Name:</p>
-    </div>
-    <div class="item-input">
-        <input id="lname" type="text">
-        <span id="lname_error" class="error"></span>
-    </div>
-  </div>
- </div>
-
-
- <div class="item" >
-  <div class="item-label">
-    <p>Preferred Name:</p>
-  </div>
-  <div class="item-input">
-      <input id="pname" type="text" disabled>
-  </div>
-</div>
-
-<div class="item" >
-  <div class="item-label">
-    <p>Email:</p>
-  </div>
-  <div class="item-input">
-      <input id="email" type="email">
-      <span id="email_error" class="error"></span>
-  </div>
-</div>
-
-
-<div class="item">
-  <div>
-    <div class="item-label">
-      <p>Job Title:</p>
-    </div>
-    <div class="flex-div"  >
-       <div class="item-input">
-         <input id="job_title" type="text">
-         <span id="job_title_error" class="error"></span>  
-       </div>
-       <div class="input-middle">--or--</div>
-       <div class="input-last" >
-         <select id="job_title_select" class="width-100"  > 
-          <option>Select</option>
-        </select>
-       </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="item">
-  <div>
-    <div class="item-label">
-      <p>Office:</p>
-    </div>
-    <div class="flex-div"  >
-       <div class="item-input">
-         <input id="office" type="text">
-         <span id="office_error" class="error"></span>  
-       </div>
-       <div class="input-middle">--or--</div>
-       <div class="input-last" >
-         <select id="office_select" class="width-100"  > 
-          <option>Select</option>
-        </select>
-       </div>
-    </div>
-  </div>
-</div>
-
-<div class="item">
-  <div>
-    <div class="item-label">
-      <p>Department:</p>
-    </div>
-    <div class="flex-div"  >
-       <div class="item-input">
-         <input id="department" type="text">
-         <span id="department_error" class="error"></span>  
-       </div>
-       <div class="input-middle">--or--</div>
-       <div class="input-last" >
-         <select id="department_select" class="width-100"  > 
-          <option>Select</option>
-        </select>
-       </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="item" >
-  <div class="item-label">
-    <p>Phone Number:</p>
-  </div>
-  <div class="item-input">
-      <input id="phone_number" type="text">
-      <span id="phone_number_error" class="error"></span>
-  </div>
-</div>
-
-
-<div class="item" >
-  <div class="item-label">
-    <p>Skype ID:</p>
-  </div>
-  <div class="item-input">
-      <input id="skype_id" type="text">
-      <span id="skype_id_error" class="error"></span>
-  </div>
-</div>
-<div style="padding: 16px 8px;">
-  <button type="button" onclick="closeForm()" style="float: left;">Cancel</button>
-  <button type="button" onclick="validation()" style="float: right;">Submit</button>
-</div>
-
- 
-
-</form>`
-
   formdiv.style.display = "block";
-
-  addListeners()
+  addPrefer()
 
 }
-
-
-
-
 
 function closeForm() {
-
   var formdiv = document.getElementById("addEmployeeForm")
   formdiv.style.display = "none"
-  formdiv.innerHTML = ''
+  removePrefer()
+
 
 
 }
+
+function removePrefer(){
+  const department = document.getElementById("department-select")
+  const jobTitle = document.getElementById("job-title-select")
+  const office = document.getElementById("office-select")
+
+  for(i=1;i<=department.options.length;i++){
+    department.remove(i)
+  }
+
+  for(i=1;i<=jobTitle.options.length;i++){
+    jobTitle.remove(i)
+  }
+
+  for(i=1;i<=office.options.length;i++){
+    office.remove(i)
+  }
+
+  
+ 
+}
+
+// add view more and view less
+
+function addPrefer(){
+
+  const department = document.getElementById("department-select")
+  const jobTitle = document.getElementById("job-title-select")
+  const office = document.getElementById("office-select")
+  Object.keys(departments).forEach((name)=>{
+    const option = document.createElement("option")
+    option.appendChild(document.createTextNode(name))
+    department.appendChild(option)
+  })
+
+  Object.keys(offices).forEach((name)=>{
+    const option = document.createElement("option")
+    option.appendChild(document.createTextNode(name))
+    office.appendChild(option)
+  })
+
+  Object.keys(jobTitles).forEach((name)=>{
+    const option = document.createElement("option")
+    option.appendChild(document.createTextNode(name))
+    jobTitle.appendChild(option)
+  })
+
+
+}
+
+
+function departmentSelected(){
+  const departmentSelect = document.getElementById("department-select")
+  const department = document.getElementById("department")
+  department.value = departmentSelect.value
+}
+
+function jobTitleSelected(){
+  const jobTitleSelect = document.getElementById("job-title-select")
+  const jobTitle = document.getElementById("job-title")
+  jobTitle.value = jobTitleSelect.value
+}
+
+function officeSelected(){
+  const officeSelect = document.getElementById("office-select")
+  const office = document.getElementById("office")
+  office.value = officeSelect.value
+
+}
+
+
+
+
 
 function addListeners() {
 
-  regValidate.forEach((e) => {
-    const ele = document.getElementById(e.id)
-    ele.addEventListener("focus", (_) => {
-      document.getElementById(e.error_id).innerHTML = ""
-    })
-  })
-
-  selectValidate.forEach((e) => {
-    const ele = document.getElementById(e.id)
-    ele.addEventListener("focus", (_) => {
-      document.getElementById(e.error_id).innerHTML = ""
-    })
-
-  })
-
-  document.getElementById("skype_id").addEventListener("focus", (_) => {
-    document.getElementById("skype_id_error").innerHTML = ""
-  })
-
-
+  //listener for generation of preferred name
 
   var firstName = ""
   var lastName = ""
@@ -186,7 +101,6 @@ function addListeners() {
 
   fname.addEventListener("input", (_) => {
     firstName = fname.value
-    console.log(firstName)
     document.getElementById('pname').value = firstName + " " + lastName
   })
 
@@ -194,164 +108,220 @@ function addListeners() {
     lastName = lname.value
     document.getElementById('pname').value = firstName + " " + lastName
   })
+
+
+ 
+ 
+
+  
+
 }
+
+
+addListeners()
 
 
 
 
 var employeeData = [];
+var departments = {}
+var offices = {}
+var jobTitles = {}
 
-var formInputs = ["fname", "lname", "email", "job_title", "office", "department", "phone_number", "skype_id"];
+
+
+
+function addFilter(employee) {
+  const department = departments[employee.department]
+  const office = offices[employee.office]
+  const jobTitle = jobTitles[employee.jobTitle]
+  if (typeof department === "undefined") {
+    departments[employee.department] = 1
+  } else {
+    departments[employee.department] = department + 1
+  }
+
+  if (typeof office === "undefined") {
+    offices[employee.office] = 1
+  }
+  else {
+    offices[employee.office] = office + 1
+  }
+
+  if (typeof jobTitle === "undefined") {
+    jobTitles[employee.jobTitle] = 1
+  } else {
+    jobTitles[employee.jobTitle] = jobTitle + 1
+  }
+
+  addFilterItems("departments-list", departments)
+  addFilterItems("offices-list", offices)
+  addFilterItems("job-titles-list", jobTitles)
+
+}
+
+
+
+function addFilterItems(ulName, list) {
+
+  const ul = document.getElementById(ulName);
+  ul.innerHTML = ""
+  Object.keys(list).forEach((name) => {
+    const li = document.createElement("li")
+    const a = document.createElement("a")
+    a.appendChild(document.createTextNode(name + " ("))
+    a.appendChild(document.createTextNode(list[name]))
+    a.appendChild(document.createTextNode(")"))
+    a.onclick = (e)=>{
+        console.log(name)
+        //todo
+    }
+    li.appendChild(a)
+    ul.appendChild(li)
+  })
+
+
+
+}
+
+function clearForm(){
+  const inputs = document.querySelectorAll(".item-input input")
+  inputs.forEach((e)=>{
+    e.value=""
+  })
+
+}
 
 
 
 
+function showImage(event) {
+  document.getElementById('pimg').src = URL.createObjectURL(event.target.files[0]);
+}
 
 function addEmployee(employee) {
-  employeeData.push(employee)
-  const div = document.createElement("div")
-  div.className = "employee"
 
-  div.innerHTML = `<div class="a-inline employee-img">
-    <img src="man128.png" width="56" height="56" >
-  </div>
-  <div class="a-inline"">
-    <div><h4 class="margin-zero">`+ employee.fname + ` ` + employee.lname + `</h4></div>
-    <div><a class="a-small">SharePoint Practice Head</a></div>
-    <div><a class="a-small" >IT Department</a></div>
-  </div>`;
-  document.getElementById("employee-content").appendChild(div)
+  var empDiv = document.createElement("div")
+  empDiv.classList.add("employee")
+  var empImgDiv = document.createElement("div")
+  empImgDiv.classList.add("a-inline")
+  empImgDiv.classList.add("employee-img")
+  var empImg = document.createElement("img")
+  empImg.src = employee.img
+  empImg.width = 60
+  empImg.height = 64
+  empImgDiv.appendChild(empImg)
+  empDiv.appendChild(empImgDiv)
+
+
+
+  var empData = document.createElement("div")
+  empData.classList.add("a-inline")
+  empData.classList.add("employee-details")
+  
+
+  var empNameDiv = document.createElement("div")
+  var empName = document.createElement("h4")
+  empName.classList.add("margin-zero")
+  empName.appendChild(document.createTextNode(employee.firstName + " " + employee.lastName))
+  empNameDiv.appendChild(empName)
+  empData.appendChild(empNameDiv)
+
+  var empTitleDiv = document.createElement("div")
+  var empTitle = document.createElement("a")
+  empTitle.classList.add("a-small")
+  empTitle.appendChild(document.createTextNode(employee.jobTitle))
+  empTitleDiv.appendChild(empTitle)
+  empData.appendChild(empTitleDiv)
+
+
+
+  var empDepartDiv = document.createElement("div")
+  var empDepart = document.createElement("a")
+  empDepart.classList.add("a-small")
+  empDepart.appendChild(document.createTextNode(employee.department))
+  empDepartDiv.appendChild(empDepart)
+  empData.appendChild(empDepartDiv)
+
+  var tdiv = document.createElement("div")
+  var call = document.createElement("img")
+  call.src="call.png"
+  call.width =12
+  call.height = 12
+  tdiv.appendChild(call)
+  var mail = document.createElement("img")
+  mail.src ="mail.png"
+  mail.width =12
+  mail.height =12
+  tdiv.appendChild(mail)
+  var msg = document.createElement("img")
+  msg.src="speech-bubble.png"
+  msg.width = 12
+  msg.height = 12
+  tdiv.appendChild(msg)
+  var star = document.createElement("img")
+  star.src = "star.png"
+  star.width = 12
+  star.height =12
+  tdiv.appendChild(star)
+  var heart = document.createElement("img")
+  heart.src = "heart.png"
+  heart.width = 12
+  heart.height =12
+  tdiv.appendChild(heart)
+  empData.appendChild(tdiv)
+
+
+  empDiv.appendChild(empData)
+  document.getElementById("employee-content").appendChild(empDiv)
+
+  addFilter(employee)
+  
 }
 
 
 
 
 
+function submitEmployeeForm(){
+  const img = document.getElementById('pimg')
+  const firstName = document.getElementById('fname')
+  const lastName = document.getElementById('lname')
+  const email = document.getElementById('email')
+  const jobTitle = document.getElementById('job-title')
+  const office = document.getElementById('office')
+  const department = document.getElementById('department')
+  const phoneNumber = document.getElementById('phone-number')
+  const skypeId = document.getElementById('skype-id')
+   const employee = new Employee(img.src, firstName.value, lastName.value, email.value, jobTitle.value, office.value, department.value, phoneNumber.value, skypeId.value)
+   addEmployee(employee)
+   employeeData.push(employee)
+   closeForm()
+   clearForm()
 
-const regValidate = [
-  { id: "fname", reg: "^(?=.{1,50}$)[a-z]+(?:['_.\s][a-z]+)*$", error_id: "fname_error", error_msg: "Please enter your first name" }
-  , { id: "lname", reg: "^(?=.{1,50}$)[a-z]+(?:['_.\s][a-z]+)*$", error_id: "lname_error", error_msg: "please enter your last name" },
-  { id: "email", reg: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$", error_id: "email_error", error_msg: "please enter a valid email address" },
-  { id: "phone_number", reg: "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$", error_id: "phone_number_error", error_msg: "please enter a valid phone number" },
-
-]
-
-const selectValidate = [
-  { id: "job_title", select_id: "job_title_select", error_msg: "please prefer a job title", error_id: "job_title_error" },
-  { id: "office", select_id: "office_select", error_msg: "please prefer an office", error_id: "office_error" },
-  { id: "department", select_id: "department_select", error_msg: "please prefer a department", error_id: "department_error" },
-]
-
-
-
-var filters = [{
-  id: "department",
-  name: "Departments",
-  filter: [
-    { name: "IT", count: 0 },
-    { name: "Human Resources", count: 0 },
-    { name: "MD", count: 0 },
-    { name: "Sales", count: 0 },
-  ]
-}, {
-  id: "offices",
-  name: "Offices",
-  filter: [
-    { name: "India", count: 0 },
-    { name: "Seattle", count: 0 },]
-}, {
-  id: "job_titles",
-  name: "Job Titles",
-  filter: [
-    { name: "SharePoint Practice Head", count: 0 },
-    { name: ".Net Development Lead", count: 0 },
-    { name: "Recuriting Expert", count: 0 },
-    { name: "BI Developer", count: 0 },
-    { name: "Business Analyst", count: 0 },]
-}]
-
-
-
-
-
-function addFilters() {
-  filters.forEach((filterItems) => {
-    const div = document.createElement("div")
-    div.className = 'department category mid-black'
-    const h4 = "<h4>" + filterItems.name + "</h4>"
-    const _filter = filterItems.filter
-    const li = _filter.map((ele) => {
-      return "<li><a>" + ele.name + " (" + ele.count + ")</a></li>"
-    }).join("")
-
-    const filterData = h4 + "<ul>" + li + "</ul>"
-
-    div.innerHTML = filterData
-
-    document.getElementById("filter-content").appendChild(div)
-
-
-
-  })
 }
 
-addFilters()
 
 
+class Employee {
 
-
-
-function validation() {
-  var flag = true;
-  regValidate.forEach((e) => {
-    const val = document.getElementById(e.id);
-    const regx = new RegExp(e.reg)
-    if (regx.test(val.value)) {
-      document.getElementById(e.error_id).innerHTML = ""
-    } else {
-      document.getElementById(e.error_id).innerHTML = e.error_msg
-      flag = false
-    }
-  })
-
-  selectValidate.forEach((e) => {
-    const val = document.getElementById(e.id);
-    if (val.value == "") {
-      document.getElementById(e.error_id).innerHTML = e.error_msg
-      flag = false
-    } else {
-      document.getElementById(e.error_id).innerHTML = ""
-    }
-  })
-
-  const skypeId = document.getElementById("skype_id")
-  if (skypeId.value == "") {
-    flag = false
-    document.getElementById("skype_id_error").innerHTML = "please enter a valid skypeid"
-  } else {
-    document.getElementById("skype_id_error").innerHTML = ""
+  constructor(img, firstName, lastName, email, jobTitle, office, department, phoneNumber, skypeId) {
+    this.img = img
+    this.firstName = firstName
+    this.lastName = lastName
+    this.email = email
+    this.jobTitle = jobTitle
+    this.office = office
+    this.department = department
+    this.phoneNumber = phoneNumber
+    this.skypeId = skypeId
   }
-
-  if (flag) {
-    addEmployee(convertArrayToObject(formInputs))
-    closeForm()
-  }
-
-
-
-
-
-
 }
 
 
 
-const convertArrayToObject = (array) => {
-  const initialValue = {};
-  return array.reduce((obj, item) => {
-    return {
-      ...obj,
-      [item]: document.getElementById(item).value,
-    };
-  }, initialValue);
-};
+
+
+
+
+
