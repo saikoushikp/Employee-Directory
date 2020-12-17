@@ -9,7 +9,145 @@
   </head>
   <body>
     <div class="form-popup" id="addEmployeeForm">
+      <form onsubmit="return submitEmployeeForm()" id="employee-form" >
+        <div>
+          <div class="a-inline" ><img id="pimg" width="60" height="60"></div>
+          <div class="a-inline" ><input id="imgChoose" onchange="showImage(event)" type="file" id="img" name="img" accept="image/*" required></div>
+        </div>
+        <div>
+         <div class="item a-inline" >
+           <div class="item-label">
+             <label for="fname">First Name:</label>
+           </div>
+           <div class="item-input">
+               <input id="fname" type="text" required>
+
+           </div>
+         </div>
        
+         <div   class="item a-inline" >
+           <div class="item-label">
+             <label for="lname">Last Name:</label>
+           </div>
+           <div class="item-input">
+               <input id="lname" type="text" required>
+               <span id="lname_error" class="error"></span>
+           </div>
+         </div>
+        </div>
+       
+       
+        <div class="item" >
+         <div class="item-label">
+           <label for="pname">Preferred Name:</label>
+         </div>
+         <div class="item-input">
+             <input id="pname" type="text" disabled>
+         </div>
+       </div>
+       
+       <div class="item" >
+         <div class="item-label">
+           <label for="email">Email:</label>
+         </div>
+         <div class="item-input">
+             <input id="email" type="email" required>
+             
+         </div>
+       </div>
+       
+       
+       <div class="item">
+         <div>
+           <div class="item-label">
+             <label for="job-title">Job Title:</label>
+           </div>
+           <div class="flex-div"  >
+              <div class="item-input">
+                <input id="job-title" type="text" required>
+               
+              </div>
+              <div class="input-middle">--or--</div>
+              <div class="input-last" >
+                <select id="job-title-select" onchange="jobTitleSelected()" class="width-100"  > 
+                 <option>Prefer a Job Title</option>
+               </select>
+              </div>
+           </div>
+         </div>
+       </div>
+       
+       
+       <div class="item">
+         <div>
+           <div class="item-label">
+             <label for="office">Office:</label>
+           </div>
+           <div class="flex-div"  >
+              <div class="item-input">
+                <input id="office" type="text" required>
+              
+              </div>
+              <div class="input-middle">--or--</div>
+              <div class="input-last" >
+                <select id="office-select" onchange="officeSelected()" class="width-100"  > 
+                 <option>Prefer an Office</option>
+               </select>
+              </div>
+           </div>
+         </div>
+       </div>
+       
+       <div class="item">
+         <div>
+           <div class="item-label">
+             <label for="department">Department:</label>
+           </div>
+           <div class="flex-div"  >
+              <div class="item-input">
+                <input id="department" type="text" required>
+                
+              </div>
+              <div class="input-middle">--or--</div>
+              <div class="input-last" >
+                <select id="department-select" onchange="departmentSelected()" class="width-100"  > 
+                 <option>Prefer a Department</option>
+               </select>
+              </div>
+           </div>
+         </div>
+       </div>
+       
+       
+       <div class="item" >
+         <div class="item-label">
+           <label for="phone-number">Phone Number:</label>
+         
+         </div>
+         <div class="item-input">
+             <input id="phone-number" type="text" required>
+             <span id="phone-number-error" class="error"></span>
+         </div>
+       </div>
+       
+       
+       <div class="item" >
+         <div class="item-label">
+           <label for="skype-id">Skype ID</label>
+         </div>
+         <div class="item-input">
+             <input id="skype-id" type="text" required>
+             <span id="skype-id-error" class="error"></span>
+         </div>
+       </div>
+       <div style="padding: 16px 8px;">
+         <button type="reset" onclick="closeForm()" style="float: left;">Cancel</button>
+         <button type="submit"  style="float: right;">Submit</button>
+       </div>
+       
+        
+       
+       </form>
     </div>
     <div class="header mid-black">
       <div class="header-left">
@@ -36,6 +174,21 @@
 
     <div class="content">
       <div class="left-content" id="filter-content">
+        <div class="category mid-black" id="departments">
+          <h4>Departments</h4>
+          <ul id="departments-list">
+
+          </ul>
+        </div>
+        <div class="category mid-black" id="offices">
+          <h4>Offices</h4>
+          <ul id="offices-list"></ul>
+        </div>
+        <div class="category mid-black" id="job_titles">
+          <h4>Job Titles</h4>
+          <ul id="job-titles-list"></ul>
+        </div>
+      </div>
       </div>
       <div class="right-content">
         <div class="filter-container">
@@ -100,10 +253,11 @@
         </div>
 
         <div class="main-content" id="employee-content">
-          
+
+        
         </div>
       </div>
     </div>
-   <script src="script.js"></script>
+   <script src="index.js"></script>
   </body>
 </html>
