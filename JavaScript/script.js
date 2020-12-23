@@ -38,11 +38,6 @@ var jobTitles = [new FilterItem("SharePoint Practice Head"), new FilterItem(".Ne
 
 
 
-const selectHints = {
-  department:"-- Prefer a Department --",
-  jobTitle:"-- Prefer a Job Title --",
-  office:"-- Prefer an Office --"
-}
 
 
 
@@ -60,6 +55,7 @@ const filters = {
 showFilterData()
 addEmployeesByList(employeeData)
 addListeners()
+addPrefers()
 
 
 
@@ -73,7 +69,7 @@ addListeners()
 
 
 function openForm() {
-  addPrefer()
+ 
   var formdiv = document.getElementById("addEmployeeForm")
   formdiv.style.display = "block";
 
@@ -81,7 +77,7 @@ function openForm() {
 }
 
 function closeForm() {
-  removePrefer()
+  
   var formdiv = document.getElementById("addEmployeeForm")
   formdiv.style.display = "none"
   
@@ -90,28 +86,12 @@ function closeForm() {
 
 }
 
-function removePrefer() {
-  const department = document.getElementById("department-select")
-  const jobTitle = document.getElementById("job-title-select")
-  const office = document.getElementById("office-select")
-  
-  department.innerHTML=""
-  jobTitle.innerHTML=""
-  office.innerHTML=""
-
-  department.appendChild(createOption(selectHints.department))
-  jobTitle.appendChild(createOption(selectHints.jobTitle))
-  office.appendChild(createOption(selectHints.office))
-
-
-
-}
 
 
 
 // add view more and view less
 
-function addPrefer() {
+function addPrefers() {
   addPreferItems(departments, "department-select")
   addPreferItems(offices, "office-select")
   addPreferItems(jobTitles, "job-title-select")
@@ -128,6 +108,7 @@ function addPreferItems(list, selectId) {
 
 function createOption(text){
    const option = document.createElement("option")
+   option.value=text
   option.appendChild(document.createTextNode(text))
   return option
 }
@@ -197,8 +178,6 @@ offices[office].increment()
 jobTitles[jobTitle].increment()
 
 showFilterData()
-closeForm()
-clearForm()
 
 }
 
@@ -302,10 +281,7 @@ function addEmployeesByList(list) {
 
 
 function clearForm() {
-  const inputs = document.querySelectorAll(".item-input input")
-  inputs.forEach((e) => {
-    e.value = ""
-  })
+  document.getElementById("employee-form").reset()
 
 }
 
@@ -413,25 +389,6 @@ function submitEmployeeForm() {
   const skypeId = document.getElementById('skype-id').value
 
 
-  if (jobTitle == selectHints.jobTitle) {
-    alert("Please select a job title")
-    return false
-  }
-
-
-  if (office == selectHints.office) {
-    alert("Please select an office")
-    return false
-  }
-
-  if (department == selectHints.department) {
-    alert("Please select a department")
-    return false
-  }
-
-
-
-
 
 
   const employee = new Employee(img, firstName, lastName, email, jobTitle, office, department, phoneNumber, skypeId)
@@ -450,9 +407,6 @@ function submitEmployeeForm() {
 
 
 
-function addPreferNames() {
-
-}
 
 function searchByKeyword(value) {
  
@@ -463,10 +417,10 @@ function searchByKeyword(value) {
     addEmployeesByList(employeeData)
   }
   else if(option=="preferredname"){
-    addEmployeesByList(employeeData.filter((e) => (e.firstName.indexOf(value) > -1) | (e.lastName.indexOf(value) > -1)))
+    addEmployeesByList(employeeData.filter((e) => toLowerCaseAndSearch(e.firstName,value) | toLowerCaseAndSearch(e.lastName,value)))
   }
   else if("email"==option){
-    addEmployeesByList(employeeData.filter((e)=>e.email.indexOf(value)>-1))
+    addEmployeesByList(employeeData.filter((e)=>toLowerCaseAndSearch(e.email,value)))
   }
   else if("phno"==option){
     console.log(value)
@@ -479,11 +433,12 @@ function searchByKeyword(value) {
    document.getElementById('search-input').value=''
  
 
-  // if (value == "") {
-  //   addEmployeesByList(employeeData)
-  // } else {
-  //   addEmployeesByList(employeeData.filter((e) => (e.firstName.indexOf(value) > -1) | (e.lastName.indexOf(value) > -1)))
-  // }
+ 
+}
+
+function toLowerCaseAndSearch(element,value){
+  return element.toLowerCase().indexOf(value.toLowerCase())>-1
+
 }
 
 
