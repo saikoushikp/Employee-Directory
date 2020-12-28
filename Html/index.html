@@ -20,7 +20,7 @@
              <label for="fname">First Name:</label>
            </div>
            <div class="item-input">
-               <input id="fname" type="text" required>
+               <input id="fname" onchange="onNameChange(event)" type="text" required>
 
            </div>
          </div>
@@ -30,8 +30,8 @@
              <label for="lname">Last Name:</label>
            </div>
            <div class="item-input">
-               <input id="lname" type="text" required>
-               <span id="lname_error" class="error"></span>
+               <input onchange="onNameChange(event)" id="lname" type="text" required>
+          
            </div>
          </div>
         </div>
@@ -98,8 +98,8 @@
          
          </div>
          <div class="item-input">
-             <input id="phone-number" type="text" required>
-             <span id="phone-number-error" class="error"></span>
+             <input id="phone-number" minlength="10" maxlength="10" type="text" required>
+           
          </div>
        </div>
        
@@ -110,7 +110,7 @@
          </div>
          <div class="item-input">
              <input id="skype-id" type="text" required>
-             <span id="skype-id-error" class="error"></span>
+            
          </div>
        </div>
        <div style="padding: 16px 8px;">
