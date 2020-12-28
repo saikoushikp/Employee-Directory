@@ -120,25 +120,6 @@ function createOption(text){
 
 function addListeners() {
 
-  //listener for generation of preferred name
-  var firstName = ""
-  var lastName = ""
-
-  const fname = document.getElementById('fname')
-  const lname = document.getElementById('lname')
-
-
-  fname.addEventListener("input", (_) => {
-    firstName = fname.value
-    document.getElementById('pname').value = firstName + " " + lastName
-  })
-
-  lname.addEventListener("input", (_) => {
-    lastName = lname.value
-    document.getElementById('pname').value = firstName + " " + lastName
-  })
-
-
   document.getElementById('employee-form').addEventListener('submit',(ev)=>{
     ev.preventDefault()
     submitEmployeeForm()
@@ -148,6 +129,10 @@ function addListeners() {
 
 }
 
+
+function onNameChange(_){
+  document.getElementById('pname').value = document.getElementById('fname').value+ " " + document.getElementById('lname').value
+}
 
 
 
