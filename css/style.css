@@ -131,6 +131,7 @@ body a{
    
    #filter-by-alphabets li {
      float: left;
+    cursor: pointer;
      background-color: #1bb1e3;
     
      
@@ -275,7 +276,7 @@ body a{
     font-weight: 600;
 }
 
-#submit{
+.submit-btn{
     background-color: #1bb1e3;
     border: #1bb1e3;
     color:white;
@@ -348,18 +349,35 @@ body a{
     display: table;
     margin: 0 auto;
 }
-
- 
- .main-content{
-     border: 1px solid  ;
+.content-details{
+    border: 1px solid black ;
     padding: 16px;
-     display: grid;
+    margin-bottom: 80px;
+}
+
+.main-content-noemployee{
+    min-height: 424px;
+    position: relative;
+    
+}
+
+.main-content-noemployee *{
+    position: absolute;
+     top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+ 
+ .main-content-employee{
+    
+     display: none;
      grid-template-columns:  repeat(4, 242px)    ;
      grid-template-rows: repeat(auto-fill, 94px);
      column-gap: 16px;
      row-gap: 8px;
      min-height: 324px;
-     margin-bottom: 80px;
+    
+     
  }
 
  .employee-details{
