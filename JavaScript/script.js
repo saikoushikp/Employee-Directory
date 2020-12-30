@@ -9,11 +9,15 @@ class FilterItem {
   increment(){
     this.count++
   }
+  decrement(){
+    this.count--
+  }
 }
 
 class Employee {
 
   constructor(img, firstName, lastName, email, jobTitle, office, department, phoneNumber, skypeId) {
+    this.id = 0
     this.img = img
     this.firstName = firstName
     this.lastName = lastName
@@ -24,12 +28,16 @@ class Employee {
     this.phoneNumber = phoneNumber
     this.skypeId = skypeId
   }
+
+  setId(value){
+    this.id = value
+  }
 }
 
 
 
 
-
+var idCount = 0;
 var employeeData = [];
 var departments = [new FilterItem("IT"), new FilterItem("Human Resources"), new FilterItem("MD"), new FilterItem("Sales")]
 var offices = [new FilterItem("Seattle"), new FilterItem("India")]
@@ -49,9 +57,31 @@ const filters = {
 
 }
 
+ function addAlphabets(){
+    const temp = document.getElementById('alphabets')
+    for(i=97;i<123;i++){
+      const txt = String.fromCharCode(i).toUpperCase()
+      const li = document.createElement('li')
+      const a = document.createElement('a')
+      a.appendChild(document.createTextNode(txt))
+     
+      a.onclick =()=>{
+        const list = employeeData.filter((e) => e.firstName.charAt(0).toUpperCase() == txt)
+        if(list.length==0){
+          displayNoEmployee()
+        }else{
+          addEmployeesByList(list)
+        }
+      }
+      li.appendChild(a)
+      temp.appendChild(li)
+
+    }
+ }
 
 
 
+addAlphabets()
 showFilterData()
 addEmployeesByList(employeeData)
 addListeners()
@@ -80,8 +110,15 @@ function closeForm() {
   
   var formdiv = document.getElementById("addEmployeeForm")
   formdiv.style.display = "none"
+  const submitBtn = document.getElementById("submit")
+  submitBtn.style.display = "block"
+  const updateBtn = document.getElementById("update")
+  updateBtn.style.display = "none"
+  const imgSelect = document.getElementById("imgChoose")
+  imgSelect.required = true;
+  clearForm()
   
-
+  
 
 
 }
@@ -123,6 +160,7 @@ function addListeners() {
   document.getElementById('employee-form').addEventListener('submit',(ev)=>{
     ev.preventDefault()
     submitEmployeeForm()
+    
   })
 
 
@@ -148,7 +186,18 @@ function showFilterData() {
 
 }
 
+function updateFilter(employee){
+const department = departments.findIndex((e)=>e.name==employee.department)
+const office = offices.findIndex((e)=>e.name==employee.office)
+const jobTitle = jobTitles.findIndex((e)=>e.name==employee.jobTitle)
 
+departments[department].decrement()
+offices[office].decrement()
+jobTitles[jobTitle].decrement()
+
+showFilterData()
+
+}
 
 
 
@@ -252,11 +301,15 @@ function onFilterItemClick(filterBy, data) {
 
 
 function addEmployeesByList(list) {
+  if(list.length==0){
+          displayNoEmployee()
+        }else{
   const employeeView = document.getElementById("employee-content")
   employeeView.innerHTML = ""
   list.forEach((e) => {
     addEmployee(e)
   })
+}
 }
 
 
@@ -267,6 +320,8 @@ function addEmployeesByList(list) {
 
 function clearForm() {
   document.getElementById("employee-form").reset()
+  document.getElementById('pimg').src = "#"
+  document.getElementById('empId').value=""
 
 }
 
@@ -278,7 +333,7 @@ function showImage(event) {
 }
 
 function addEmployee(employee) {
-
+  hideNoEmployee()
   var empDiv = document.createElement("div")
   empDiv.classList.add("employee")
   var empImgDiv = document.createElement("div")
@@ -350,8 +405,8 @@ function addEmployee(employee) {
   empDiv.appendChild(empData)
   document.getElementById("employee-content").appendChild(empDiv)
 
-  empDiv.addEventListener("click", function() {
-    console.log("voeti")
+  empDiv.addEventListener("click",(_)=>{
+      displayEmployeeData(employee)
   });
 
  
@@ -362,7 +417,27 @@ function addEmployee(employee) {
 
 
 
-function submitEmployeeForm() {
+function displayEmployeeData(employee){
+  setEmployeeData(employee)
+  const submitBtn = document.getElementById("submit")
+  submitBtn.style.display = "none"
+  const updateBtn = document.getElementById("update")
+  updateBtn.style.display = "block"
+  const imgSelect = document.getElementById("imgChoose")
+  imgSelect.required = false;
+  openForm()
+
+}
+
+function findEmployeeIndexById(id){
+  return employeeData.findIndex((element)=>element.id == id)
+}
+
+
+
+
+
+function getEmployeeData(){
   const img = document.getElementById('pimg').src
   const firstName = document.getElementById('fname').value
   const lastName = document.getElementById('lname').value
@@ -373,21 +448,62 @@ function submitEmployeeForm() {
   const phoneNumber = document.getElementById('phone-number').value
   const skypeId = document.getElementById('skype-id').value
 
+  return  new Employee(img, firstName, lastName, email, jobTitle, office, department, phoneNumber, skypeId)
+
+}
+
+function setEmployeeData(employee){
+  document.getElementById('pimg').src = employee.img
+  document.getElementById('empId').value = employee.id
+  document.getElementById('pname').value = employee.firstName +" "+employee.lastName
+ document.getElementById('fname').value = employee.firstName
+ document.getElementById('lname').value = employee.lastName
+ document.getElementById('email').value = employee.email
+ document.getElementById('job-title-select').value = employee.jobTitle
+ document.getElementById('office-select').value = employee.office
+ document.getElementById('department-select').value = employee.department
+ document.getElementById('phone-number').value = employee.phoneNumber
+ document.getElementById('skype-id').value = employee.skypeId
+}
 
 
 
-  const employee = new Employee(img, firstName, lastName, email, jobTitle, office, department, phoneNumber, skypeId)
-  addEmployee(employee)
+
+
+function submitEmployeeForm() {
+ 
+
+  const employee = getEmployeeData()
+  const empId = document.getElementById('empId').value
+  if(empId==""){
+    employee.setId(idCount++)
+    addEmployee(employee)
+    employeeData.push(employee)
+    
+  }else{
+    const index = findEmployeeIndexById(empId)
+    employee.setId(empId)
+    updateFilter(employeeData[index])
+    employeeData[index] = employee
+    refreshData()
+    const submitBtn = document.getElementById("submit")
+    submitBtn.style.display = "block"
+    const updateBtn = document.getElementById("update")
+    updateBtn.style.display = "none"
+    const imgSelect = document.getElementById("imgChoose")
+    imgSelect.required = true;
+  }
   addFilter(employee)
-  employeeData.push(employee)
   closeForm()
-  clearForm()
+  
   
   
 }
 
 
-
+function refreshData(){
+  addEmployeesByList(employeeData)
+}
 
 
 
@@ -399,26 +515,41 @@ function searchByKeyword(value) {
   const option = document.getElementById("filter-options").value
   
   if(value==""){
-    addEmployeesByList(employeeData)
+    refreshData()
   }
   else if(option=="preferredname"){
-    addEmployeesByList(employeeData.filter((e) => toLowerCaseAndSearch(e.firstName,value) | toLowerCaseAndSearch(e.lastName,value)))
+    const list = employeeData.filter((e) => toLowerCaseAndSearch(e.firstName,value) | toLowerCaseAndSearch(e.lastName,value))
+    
+    
   }
   else if("email"==option){
-    addEmployeesByList(employeeData.filter((e)=>toLowerCaseAndSearch(e.email,value)))
+    const list = employeeData.filter((e)=>toLowerCaseAndSearch(e.email,value))
+    
+   
   }
   else if("phno"==option){
-    console.log(value)
-    addEmployeesByList(employeeData.filter((e)=>e.phoneNumber.indexOf(value)>-1))
+    const list = employeeData.filter((e)=>e.phoneNumber.indexOf(value)>-1)
+    
   }
   else{
-    addEmployeesByList(employeeData)
+    refreshData()
   }
   
    document.getElementById('search-input').value=''
  
 
  
+}
+
+function hideNoEmployee(){
+  document.getElementById("no-employee").style.display ="none"
+  document.getElementById("employee-content").style.display ="grid"
+}
+
+
+function displayNoEmployee(){
+  document.getElementById("no-employee").style.display ="block"
+      document.getElementById("employee-content").style.display ="none"
 }
 
 function toLowerCaseAndSearch(element,value){
@@ -428,13 +559,10 @@ function toLowerCaseAndSearch(element,value){
 
 
 
-function byAlphabet(text) {
-  console.log(text)
-  addEmployeesByList(employeeData.filter((e) => e.firstName.charAt(0).toUpperCase() == text))
-}
+
 
 
 function clearSearch(){
   document.getElementById('search-input').value=''
-  addEmployeesByList(employeeData)
+  refreshData()
 }
