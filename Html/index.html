@@ -10,17 +10,18 @@
   <body>
     <div class="form-popup" id="addEmployeeForm">
       <form  id="employee-form" >
+        <input type="hidden" value="" id="empId">
         <div class="chooseImg">
           <div class="imgDiv"><img id="pimg" width="60" height="60"></div>
-          <div class="chooseDiv" ><input  id="imgChoose" onchange="showImage(event)" type="file"  accept="image/*" required></div>
+          <div class="chooseDiv" ><input name="chooseImg"  id="imgChoose" onchange="showImage(event)" type="file"  accept="image/*" required></div>
         </div>
         <div>
-         <div class="item a-inline" >
+        <div class="item a-inline" >
            <div class="item-label">
              <label for="fname">First Name:</label>
            </div>
            <div class="item-input">
-               <input id="fname" onchange="onNameChange(event)" type="text" required>
+               <input id="fname" name="fname" onchange="onNameChange(event)" type="text" required>
 
            </div>
          </div>
@@ -30,7 +31,7 @@
              <label for="lname">Last Name:</label>
            </div>
            <div class="item-input">
-               <input onchange="onNameChange(event)" id="lname" type="text" required>
+               <input onchange="onNameChange(event)" name="lname" id="lname" type="text" required>
           
            </div>
          </div>
@@ -42,7 +43,7 @@
            <label for="pname">Preferred Name:</label>
          </div>
          <div class="item-input">
-             <input id="pname" type="text" disabled>
+             <input id="pname" name="pname" type="text" disabled>
          </div>
        </div>
        
@@ -51,7 +52,7 @@
            <label for="email">Email:</label>
          </div>
          <div class="item-input">
-             <input id="email" type="email" required>
+             <input id="email" name="email" type="email" required>
              
          </div>
        </div>
@@ -61,7 +62,7 @@
           <label for="job-title-select">Job Title:</label>
         </div>
         <div class="item-input">
-             <select id="job-title-select" class="select" required> 
+             <select id="job-title-select" name="job-title" class="select" required> 
                  <option value="" selected disabled >-- Prefer a Job Title --</option>
              </select>
             
@@ -73,7 +74,7 @@
           <label for="office-select">Office:</label>
         </div>
         <div class="item-input">
-            <select id="office-select" class="select"  required> 
+            <select id="office-select" name="office-select" class="select"  required> 
               <option value="" selected disabled  >-- Prefer an Office --</option>
             </select>
         </div>
@@ -83,7 +84,7 @@
           <label for="department-select">Department:</label>
         </div>
         <div class="item-input">
-          <select id="department-select" class="select"  required> 
+          <select name="department-select" id="department-select" class="select"  required> 
             <option value="" selected disabled >-- Prefer a Department --</option>
           </select>
         </div>
@@ -98,7 +99,7 @@
          
          </div>
          <div class="item-input">
-             <input id="phone-number" minlength="10" maxlength="10" type="text" required>
+             <input name="phone-number" id="phone-number" minlength="10" maxlength="10" type="text" required>
            
          </div>
        </div>
@@ -109,13 +110,14 @@
            <label for="skype-id">Skype ID</label>
          </div>
          <div class="item-input">
-             <input id="skype-id" type="text" required>
+             <input name="skype-id" id="skype-id" type="text" required>
             
          </div>
        </div>
        <div style="padding: 16px 8px;">
-         <button id="cancel" type="reset" onclick="closeForm()" style="float: left;">Cancel</button>
-         <button id="submit" type="submit"  style="float: right;">Submit</button>
+         <button name="cancel" id="cancel" type="reset" onclick="closeForm()" style="float: left;">Cancel</button>
+         <button name="update" class="submit-btn" id="update" type="submit"  style="float: right; display: none;">Update</button>
+         <button name="submit" class="submit-btn" id="submit" type="submit"  style="float: right;">Submit</button>
        </div>
        
         
@@ -166,34 +168,9 @@
       <div class="right-content">
         <div class="filter-container">
           <div id="filter-by-alphabets">
-            <ul>
-              <li><img src="user.png" width="20px" height="16px"</li>
-              <li><a onclick="byAlphabet('A')" href="#">A</a></li>
-              <li><a onclick="byAlphabet('B')" href="#">B</a></li>
-              <li><a onclick="byAlphabet('C')" href="#">C</a></li>
-              <li><a onclick="byAlphabet('D')" href="#">D</a></li>
-              <li><a onclick="byAlphabet('E')" href="#">E</a></li>
-              <li><a onclick="byAlphabet('F')" href="#">F</a></li>
-              <li><a onclick="byAlphabet('G')" href="#">G</a></li>
-              <li><a  onclick="byAlphabet('H')"  href="#">H</a></li>
-              <li><a  onclick="byAlphabet('I')" href="#">I</a></li>
-              <li><a  onclick="byAlphabet('J')" href="#">J</a></li>
-              <li><a  onclick="byAlphabet('K')" href="#">K</a></li>
-              <li><a  onclick="byAlphabet('L')" href="#">L</a></li>
-              <li><a  onclick="byAlphabet('M')" href="#">M</a></li>
-              <li><a  onclick="byAlphabet('N')" href="#">N</a></li>
-              <li><a  onclick="byAlphabet('O')" href="#">O</a></li>
-              <li><a  onclick="byAlphabet('P')" href="#">P</a></li>
-              <li><a  onclick="byAlphabet('Q')" href="#">Q</a></li>
-              <li><a  onclick="byAlphabet('R')" href="#">R</a></li>
-              <li><a  onclick="byAlphabet('S')" href="#">S</a></li>
-              <li><a  onclick="byAlphabet('T')" href="#">T</a></li>
-              <li><a  onclick="byAlphabet('U')" href="#">U</a></li>
-              <li><a  onclick="byAlphabet('V')" href="#">V</a></li>
-              <li><a  onclick="byAlphabet('W')" href="#">W</a></li>
-              <li><a  onclick="byAlphabet('X')" href="#">X</a></li>
-              <li><a  onclick="byAlphabet('Y')" href="#">Y</a></li>
-              <li><a  onclick="byAlphabet('Z')" href="#">Z</a></li>
+            <ul id="alphabets">
+              <li><img src="user.png" width="20px" height="16px"></li>
+            
             </ul>
           </div>
           <div class="filter-by-input">
@@ -230,8 +207,11 @@
             refine your results</a>
         </div>
 
-        <div class="main-content" id="employee-content">
-
+        <div class="main-content-div">
+          <div class="main-content-employee content-details"  id="employee-content"></div>
+          <div class="main-content-noemployee  content-details" id="no-employee">
+            <h3>No Employee Data</h3>
+          </div>
         
         </div>
       </div>
