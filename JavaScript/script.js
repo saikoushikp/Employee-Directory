@@ -70,7 +70,7 @@ const filters = {
         if(list.length==0){
           displayNoEmployee()
         }else{
-          addEmployeesByList(list)
+          displayEmpsByList(list)
         }
       }
       li.appendChild(a)
@@ -82,8 +82,8 @@ const filters = {
 
 
 addAlphabets()
-showFilterData()
-addEmployeesByList(employeeData)
+showFilters()
+displayEmpsByList(employeeData)
 addListeners()
 addPrefers()
 
@@ -100,7 +100,7 @@ addPrefers()
 
 function openForm() {
  
-  var formdiv = document.getElementById("addEmployeeForm")
+  var formdiv = document.getElementById("displayEmpForm")
   formdiv.style.display = "block";
 
 
@@ -108,7 +108,7 @@ function openForm() {
 
 function closeForm() {
   
-  var formdiv = document.getElementById("addEmployeeForm")
+  var formdiv = document.getElementById("displayEmpForm")
   formdiv.style.display = "none"
   const submitBtn = document.getElementById("submit")
   submitBtn.style.display = "block"
@@ -168,7 +168,7 @@ function addListeners() {
 }
 
 
-function onNameChange(_){
+function pnameUpdate(_){
   document.getElementById('pname').value = document.getElementById('fname').value+ " " + document.getElementById('lname').value
 }
 
@@ -178,7 +178,7 @@ function onNameChange(_){
 
 
 
-function showFilterData() {
+function showFilters() {
   addFilterItems(filters.dept, departments)
   addFilterItems(filters.jobTitle, jobTitles)
   addFilterItems(filters.office, offices)
@@ -195,7 +195,7 @@ departments[department].decrement()
 offices[office].decrement()
 jobTitles[jobTitle].decrement()
 
-showFilterData()
+showFilters()
 
 }
 
@@ -211,7 +211,7 @@ departments[department].increment()
 offices[office].increment()
 jobTitles[jobTitle].increment()
 
-showFilterData()
+showFilters()
 
 }
 
@@ -254,7 +254,7 @@ function createFilterLi(filterItem, filterBy) {
   a.appendChild(document.createTextNode(filterItem.count))
   a.appendChild(document.createTextNode(")"))
   a.onclick = (_) => {
-    onFilterItemClick(filterBy, filterItem.name)
+    FilterClick(filterBy, filterItem.name)
   }
 
   li.appendChild(a)
@@ -294,20 +294,20 @@ function createViewMore(list, ulName) {
 
 
 
-function onFilterItemClick(filterBy, data) {
+function FilterClick(filterBy, data) {
   const eData = filterEmployee(filterBy, data)
-  addEmployeesByList(eData)
+  displayEmpsByList(eData)
 }
 
 
-function addEmployeesByList(list) {
+function displayEmpsByList(list) {
   if(list.length==0){
       displayNoEmployee()
     }else{
   const employeeView = document.getElementById("employee-content")
   employeeView.innerHTML = ""
   list.forEach((e) => {
-    addEmployee(e)
+    displayEmp(e)
   })
 }
 }
@@ -332,7 +332,7 @@ function showImage(event) {
   document.getElementById('pimg').src = URL.createObjectURL(event.target.files[0]);
 }
 
-function addEmployee(employee) {
+function displayEmp(employee) {
   hideNoEmployee()
   var empDiv = document.createElement("div")
   empDiv.classList.add("employee")
@@ -477,7 +477,7 @@ function submitEmployeeForm() {
   const empId = document.getElementById('empId').value
   if(empId==""){
     employee.setId(idCount++)
-    addEmployee(employee)
+    displayEmp(employee)
     employeeData.push(employee)
     
   }else{
@@ -502,7 +502,7 @@ function submitEmployeeForm() {
 
 
 function refreshData(){
-  addEmployeesByList(employeeData)
+  displayEmpsByList(employeeData)
 }
 
 
@@ -521,7 +521,7 @@ function searchByKeyword(value) {
     const list = employeeData.filter((e) => toLowerCaseAndSearch(e.firstName,value) | toLowerCaseAndSearch(e.lastName,value))
     
       
-      addEmployeesByList(list)
+      displayEmpsByList(list)
     
     
   }
@@ -529,14 +529,14 @@ function searchByKeyword(value) {
     const list = employeeData.filter((e)=>toLowerCaseAndSearch(e.email,value))
     
       
-      addEmployeesByList(list)
+      displayEmpsByList(list)
     
    
   }
   else if("phno"==option){
     const list = employeeData.filter((e)=>e.phoneNumber.indexOf(value)>-1)
     
-      addEmployeesByList(list)
+      displayEmpsByList(list)
     
 
   }
