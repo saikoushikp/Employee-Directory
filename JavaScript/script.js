@@ -302,8 +302,8 @@ function onFilterItemClick(filterBy, data) {
 
 function addEmployeesByList(list) {
   if(list.length==0){
-          displayNoEmployee()
-        }else{
+      displayNoEmployee()
+    }else{
   const employeeView = document.getElementById("employee-content")
   employeeView.innerHTML = ""
   list.forEach((e) => {
@@ -520,16 +520,25 @@ function searchByKeyword(value) {
   else if(option=="preferredname"){
     const list = employeeData.filter((e) => toLowerCaseAndSearch(e.firstName,value) | toLowerCaseAndSearch(e.lastName,value))
     
+      
+      addEmployeesByList(list)
+    
     
   }
   else if("email"==option){
     const list = employeeData.filter((e)=>toLowerCaseAndSearch(e.email,value))
+    
+      
+      addEmployeesByList(list)
     
    
   }
   else if("phno"==option){
     const list = employeeData.filter((e)=>e.phoneNumber.indexOf(value)>-1)
     
+      addEmployeesByList(list)
+    
+
   }
   else{
     refreshData()
