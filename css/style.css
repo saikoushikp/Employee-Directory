@@ -1,577 +1,429 @@
-
-
-class FilterItem {
-  constructor(name, count) {
-    this.name = name
-    this.count = count | 0
-  }
-
-  increment(){
-    this.count++
-  }
-  decrement(){
-    this.count--
-  }
+body{
+  padding: 24px;
+  font-family: sans-serif;
+  position: relative;
 }
 
-class Employee {
+.margin-zero{
+    margin: 0px;
+}
 
-  constructor(img, firstName, lastName, email, jobTitle, office, department, phoneNumber, skypeId) {
-    this.id = 0
-    this.img = img
-    this.firstName = firstName
-    this.lastName = lastName
-    this.email = email
-    this.jobTitle = jobTitle
-    this.office = office
-    this.department = department
-    this.phoneNumber = phoneNumber
-    this.skypeId = skypeId
-  }
+body a{
+    color: black;
+    text-decoration: none;}
 
-  setId(value){
-    this.id = value
-  }
+.mid-black{
+    color: rgb(26, 23, 23);
+}
+
+.view-more{
+    color: #1bb1e3;
+    line-height: 36px;
 }
 
 
 
-
-var idCount = 0;
-var employeeData = [];
-var departments = [new FilterItem("IT"), new FilterItem("Human Resources"), new FilterItem("MD"), new FilterItem("Sales")]
-var offices = [new FilterItem("Seattle"), new FilterItem("India")]
-var jobTitles = [new FilterItem("SharePoint Practice Head"), new FilterItem(".Net Development Lead"), new FilterItem("Recuriting Expert"), new FilterItem("BI Develper"), new FilterItem("Business Analyst")]
-
-
-
-
-
-
-
-const filters = {
-  dept: "departments-list",
-  jobTitle: "job-titles-list",
-  office: "offices-list"
-
-
+.header-left{
+    float: left;
+    padding-bottom: 16px;   
 }
 
- function addAlphabets(){
-    const temp = document.getElementById('alphabets')
-    for(i=97;i<123;i++){
-      const txt = String.fromCharCode(i).toUpperCase()
-      const li = document.createElement('li')
-      const a = document.createElement('a')
-      a.appendChild(document.createTextNode(txt))
+.a-inline{
+    display: inline-block;
+}
+
+
+
+
+#website-name{
+    display: inline-block;
+}
+
+#website-name a{
+    font-size: 16px;
+}
+
+
+#website-name a span{
+    font-size: 32px;
+}
+
+
+.header-right{
+    position: absolute;
+    right: 0;
+    bottom: 16px;
+}
+
+.header-right a{
+    font-size: 28px;
+}
+
+.header{
+    position: relative;
+    border-bottom: 1px solid rgb(110, 109, 109);
+    width: 100%;
+    overflow: hidden;
+}
+
+
+
+.content{
+    padding-top: 40px;
+}
+
+.blue-clr{
+    color: #1bb1e3;
+}
+
+
+.left-content{
+    float: left;
+     width: 17%;
+ }
+ 
+ .right-content{
+    float: right;
+     width: 82%;
+ }
+ 
+ 
+ .category ul{
+     list-style-type: none;
+     padding: 0px;
+     margin: 0px;
+ }
+
+ .category li{
+    padding-left: 4px;
+    line-height: 24px;
+ }
+
+ .category a{
+     font-size: 14px;
      
-      a.onclick =()=>{
-        const list = employeeData.filter((e) => e.firstName.charAt(0).toUpperCase() == txt)
-        if(list.length==0){
-          displayNoEmployee()
-        }else{
-          addEmployeesByList(list)
-        }
-      }
-      li.appendChild(a)
-      temp.appendChild(li)
+ }
 
-    }
+ .category h4{
+     margin: 0;
+     padding-bottom: 12px;
+ }
+ .category{
+     min-height: 120px;
+     padding-bottom: 28px;
+ }
+
+ 
+ 
+ 
+ 
+ #filter-by-alphabets ul {
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
+     overflow: hidden;
+     display:flex;
+     justify-content: space-between;
+     
+   }
+
+
+   
+   #filter-by-alphabets li {
+     float: left;
+    cursor: pointer;
+     background-color: #1bb1e3;
+    
+     
+   }
+   
+   #filter-by-alphabets li:last-child {
+     border-right: none;
+    
+ 
+   }
+
+
+
+   #filter-by-alphabets li a:hover{
+        background-color: #111;
+   }
+   #filter-by-alphabets li:first-child a:hover{
+        background-color: #1bb1e3;
+   }
+
+   #filter-by-alphabets li:first-child img{
+     padding: 10px 8px 2px 8px;
+     filter: brightness(0) invert(1);
+   }
+   
+   #filter-by-alphabets li a {
+     display: block;
+     color: white;
+     width: 12px;
+     font-size: 18px;
+     text-align: center;
+     padding: 8px 12px;
+     text-decoration: none;
+   }
+
+
+
+   #left-container{
+     float: left;
+ }
+ #right-container{
+     float: right;
+ }
+
+ #displayEmp{
+     background-color: #1bb1e3;
+     border: #1bb1e3;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px;
+    
+ }
+
+ #displayEmp:hover{
+    border: #1bb1e3;
+    background-color: black;
+ }
+   
+ #search-by-input{
+     display: inline-block;
+ }
+ 
+ #filter-by{
+     display: inline-block;
+     margin-left: 32px;
+ }
+ 
+ #filter-by select{
+     height: 36px;
+     width: 176px;
+ }
+ 
+ .filter-by-input{
+     padding: 24px 0px 8px 0px;
+     overflow: hidden;
+ }
+
+ #search-input{
+    margin-left: 8px;
+    width: 240px;
+    height: 36px;
+    background: url(search.png) no-repeat 4px;
+    background-size: 16px 16px;
+    padding-left:30px;
+ }
+
+ #search-btn{
+    height: 36px;
+    width: 68px;
+    background-color: green;
+    border:green;
+    color: white;
+    margin-left: 24px;
+ }
+ 
+
+ .note{
+  overflow: hidden; 
+  width: 100%; 
+  padding: 8px 0px;
+ }
+
+ .note a{
+     font-size: 12px;
+ }
+
+ .note span{
+    font-weight: 600;
+     color: #000;
+ }
+
+.chooseImg{
+   padding: 8px;
+}
+
+
+
+ 
+
+.item-input *,.item-block{
+    display: block;
+}
+
+
+
+.item{
+    margin: 8px;
+}
+
+.icon{
+    width: 12px;
+    height: 12px;
+}
+
+#cancel{
+    background-color: rgb(238, 36, 36);
+    color: white;
+    border: rgb(238, 36, 36);
+    height: 28px;
+    width: 60px;
+    font-weight: 600;
+}
+
+.submit-btn{
+    background-color: #1bb1e3;
+    border: #1bb1e3;
+    color:white;
+    height: 28px;
+    width: 60px;
+    font-weight: 600;
+}
+
+
+.item-input input{
+    border-color: black;
+     background-color: white;
+}
+
+
+
+.flex-div{
+    display:flex
+}
+
+.select{
+    width: 100%;
+    height: 24px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+
+
+
+
+.item input{
+    -webkit-appearance: none;
+    appearance: none;
+  
+    width: 100%;
+    border: 1px solid #333;
+    margin: 0;
+  
+    font-family: inherit;
+    font-size: 90%;
+  
+    box-sizing: border-box;
+  }
+  
+  
+
+
+
+  
+ 
+
+
+ .form-popup{
+    border: 3px solid #f1f1f1;
+    overflow: hidden;
+    z-index: 9; 
+    margin: 0;
+    padding: 2%;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,24px) ;
+    display: none
+   
+    
+ }
+
+.img-div{
+    display: table;
+    margin: 0 auto;
+}
+.content-details{
+    border: 1px solid black ;
+    padding: 16px;
+    margin-bottom: 80px;
+}
+
+.main-content-noemployee{
+    min-height: 424px;
+    position: relative;
+    
+}
+
+.main-content-noemployee *{
+    position: absolute;
+     top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+ 
+ .main-content-employee{
+    
+     display: none;
+     grid-template-columns:  repeat(4, 242px)    ;
+     grid-template-rows: repeat(auto-fill, 94px);
+     column-gap: 16px;
+     row-gap: 8px;
+     min-height: 324px;
+    
+     
+ }
+
+ .employee-details{
+     padding-left: 8px;
+ }
+
+ .employee-details img {
+     margin-right: 4px;
+    
+ }
+
+ .employee{
+    height: 72px;
+    padding: 6px;
+    border: 1px solid black;
+     width: 234px;
+ }
+
+ @keyframes pulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.1);}
+    100% {transform: scale(1);}
+  }
+
+  .employee:hover{
+    cursor: pointer;
+  }
+ .employee:active{
+     cursor: pointer;
+     animation-duration: 1s;
+     animation-name: pulse;
  }
 
 
 
-addAlphabets()
-showFilterData()
-addEmployeesByList(employeeData)
-addListeners()
-addPrefers()
+ .employee-img img{
+     border: 1px solid black;
+ }
 
-
-
-
-
-
-
-
-
-
-
-
-function openForm() {
+ .a-small{
+     font-size: 12px;
+     margin: 0px;
+ }
  
-  var formdiv = document.getElementById("addEmployeeForm")
-  formdiv.style.display = "block";
-
-
-}
-
-function closeForm() {
-  
-  var formdiv = document.getElementById("addEmployeeForm")
-  formdiv.style.display = "none"
-  const submitBtn = document.getElementById("submit")
-  submitBtn.style.display = "block"
-  const updateBtn = document.getElementById("update")
-  updateBtn.style.display = "none"
-  const imgSelect = document.getElementById("imgChoose")
-  imgSelect.required = true;
-  clearForm()
-  
-  
-
-
-}
-
-
-
-
-// add view more and view less
-
-function addPrefers() {
-  addPreferItems(departments, "department-select")
-  addPreferItems(offices, "office-select")
-  addPreferItems(jobTitles, "job-title-select")
-
-}
-
-
-function addPreferItems(list, selectId) {
-  const select = document.getElementById(selectId)
-  list.forEach((e) => {
-    select.appendChild(createOption(e.name))
-  })
-}
-
-function createOption(text){
-   const option = document.createElement("option")
-   option.value=text
-  option.appendChild(document.createTextNode(text))
-  return option
-}
-
-
-
-
-
-
-function addListeners() {
-
-  document.getElementById('employee-form').addEventListener('submit',(ev)=>{
-    ev.preventDefault()
-    submitEmployeeForm()
-    
-  })
-
-
-
-}
-
-
-function onNameChange(_){
-  document.getElementById('pname').value = document.getElementById('fname').value+ " " + document.getElementById('lname').value
-}
-
-
-
-
-
-
-
-function showFilterData() {
-  addFilterItems(filters.dept, departments)
-  addFilterItems(filters.jobTitle, jobTitles)
-  addFilterItems(filters.office, offices)
-
-
-}
-
-function updateFilter(employee){
-const department = departments.findIndex((e)=>e.name==employee.department)
-const office = offices.findIndex((e)=>e.name==employee.office)
-const jobTitle = jobTitles.findIndex((e)=>e.name==employee.jobTitle)
-
-departments[department].decrement()
-offices[office].decrement()
-jobTitles[jobTitle].decrement()
-
-showFilterData()
-
-}
-
-
-
-function addFilter(employee) {
-
-const department = departments.findIndex((e)=>e.name==employee.department)
-const office = offices.findIndex((e)=>e.name==employee.office)
-const jobTitle = jobTitles.findIndex((e)=>e.name==employee.jobTitle)
-
-departments[department].increment()
-offices[office].increment()
-jobTitles[jobTitle].increment()
-
-showFilterData()
-
-}
-
-function addFilterItems(ulName, list) {
-  const ul = document.getElementById(ulName);
-  ul.innerHTML = ""
-
-  if (list.length > 5) {
-    for (i = 0; i < 5; i++) {
-      ul.appendChild(createFilterLi(list[i], ulName))
-    }
-    ul.appendChild(createViewMore(list, ulName))
-  } else {
-    list.forEach((e) => {
-      ul.appendChild(createFilterLi(e, ulName))
-    })
-  }
-
-
-
-}
-
-function filterEmployee(filterBy, data) {
-  if (filterBy == filters.dept) {
-    return employeeData.filter((e) => e.department == data)
-  }
-  else if (filterBy == filters.jobTitle) {
-    return employeeData.filter((e) => e.jobTitle == data)
-  }
-  else {
-    return employeeData.filter((e) => e.office == data)
-  }
-}
-
-
-function createFilterLi(filterItem, filterBy) {
-  const li = document.createElement("li")
-  const a = document.createElement("a")
-  a.appendChild(document.createTextNode(filterItem.name + " ("))
-  a.appendChild(document.createTextNode(filterItem.count))
-  a.appendChild(document.createTextNode(")"))
-  a.onclick = (_) => {
-    onFilterItemClick(filterBy, filterItem.name)
-  }
-
-  li.appendChild(a)
-  return li
-}
-
-function createViewLess(list, ulName) {
-  const li = document.createElement("li")
-  const a = document.createElement("a")
-  a.className = "view-more"
-  a.appendChild(document.createTextNode("view less"))
-  a.onclick = (_) => {
-    addFilterItems(ulName, list)
-  }
-  li.appendChild(a)
-
-  return li
-}
-
-function createViewMore(list, ulName) {
-  const li = document.createElement("li")
-  const a = document.createElement("a")
-  a.className = "view-more"
-  a.appendChild(document.createTextNode("view more"))
-  a.onclick = (_) => {
-    const ul = document.getElementById(ulName);
-    ul.innerHTML = ""
-    list.forEach((e) => {
-      ul.appendChild(createFilterLi(e, ulName))
-    })
-    ul.appendChild(createViewLess(list, ulName))
-  }
-  li.appendChild(a)
-
-  return li
-}
-
-
-
-function onFilterItemClick(filterBy, data) {
-  const eData = filterEmployee(filterBy, data)
-  addEmployeesByList(eData)
-}
-
-
-function addEmployeesByList(list) {
-  if(list.length==0){
-      displayNoEmployee()
-    }else{
-  const employeeView = document.getElementById("employee-content")
-  employeeView.innerHTML = ""
-  list.forEach((e) => {
-    addEmployee(e)
-  })
-}
-}
-
-
-
-
-
-
-
-function clearForm() {
-  document.getElementById("employee-form").reset()
-  document.getElementById('pimg').src = "#"
-  document.getElementById('empId').value=""
-
-}
-
-
-
-
-function showImage(event) {
-  document.getElementById('pimg').src = URL.createObjectURL(event.target.files[0]);
-}
-
-function addEmployee(employee) {
-  hideNoEmployee()
-  var empDiv = document.createElement("div")
-  empDiv.classList.add("employee")
-  var empImgDiv = document.createElement("div")
-  empImgDiv.classList.add("a-inline")
-  empImgDiv.classList.add("employee-img")
-  var empImg = document.createElement("img")
-  empImg.src = employee.img
-  empImg.width = 60
-  empImg.height = 64
-  empImgDiv.appendChild(empImg)
-  empDiv.appendChild(empImgDiv)
-
-
-
-  var empData = document.createElement("div")
-  empData.classList.add("a-inline")
-  empData.classList.add("employee-details")
-
-
-  var empNameDiv = document.createElement("div")
-  var empName = document.createElement("h4")
-  empName.classList.add("margin-zero")
-  empName.appendChild(document.createTextNode(employee.firstName + " " + employee.lastName))
-  empNameDiv.appendChild(empName)
-  empData.appendChild(empNameDiv)
-
-  var empTitleDiv = document.createElement("div")
-  var empTitle = document.createElement("a")
-  empTitle.classList.add("a-small")
-  empTitle.appendChild(document.createTextNode(employee.jobTitle))
-  
-  empTitleDiv.appendChild(empTitle)
-  empData.appendChild(empTitleDiv)
-
-
-
-  var empDepartDiv = document.createElement("div")
-  var empDepart = document.createElement("a")
-  empDepart.classList.add("a-small")
-
-  empDepart.appendChild(document.createTextNode(employee.department))
-  empDepartDiv.appendChild(empDepart)
-  empData.appendChild(empDepartDiv)
-
-  var tdiv = document.createElement("div")
-  var call = document.createElement("img")
-  call.src = "call.png"
-  call.classList = "icon"
-  tdiv.appendChild(call)
-  var mail = document.createElement("img")
-  mail.src = "mail.png"
-  mail.classList = "icon"
-  tdiv.appendChild(mail)
-  var msg = document.createElement("img")
-  msg.src = "speech-bubble.png"
-  msg.classList = "icon"
-  tdiv.appendChild(msg)
-  var star = document.createElement("img")
-  star.src = "star.png"
-  star.classList = "icon"
-  tdiv.appendChild(star)
-  var heart = document.createElement("img")
-  heart.src = "heart.png"
-  heart.classList = "icon"
-  tdiv.appendChild(heart)
-  empData.appendChild(tdiv)
-
-
-  empDiv.appendChild(empData)
-  document.getElementById("employee-content").appendChild(empDiv)
-
-  empDiv.addEventListener("click",(_)=>{
-      displayEmployeeData(employee)
-  });
-
+ 
+ 
+ 
  
 
-}
-
-
-
-
-
-function displayEmployeeData(employee){
-  setEmployeeData(employee)
-  const submitBtn = document.getElementById("submit")
-  submitBtn.style.display = "none"
-  const updateBtn = document.getElementById("update")
-  updateBtn.style.display = "block"
-  const imgSelect = document.getElementById("imgChoose")
-  imgSelect.required = false;
-  openForm()
-
-}
-
-function findEmployeeIndexById(id){
-  return employeeData.findIndex((element)=>element.id == id)
-}
-
-
-
-
-
-function getEmployeeData(){
-  const img = document.getElementById('pimg').src
-  const firstName = document.getElementById('fname').value
-  const lastName = document.getElementById('lname').value
-  const email = document.getElementById('email').value
-  const jobTitle = document.getElementById('job-title-select').value
-  const office = document.getElementById('office-select').value
-  const department = document.getElementById('department-select').value
-  const phoneNumber = document.getElementById('phone-number').value
-  const skypeId = document.getElementById('skype-id').value
-
-  return  new Employee(img, firstName, lastName, email, jobTitle, office, department, phoneNumber, skypeId)
-
-}
-
-function setEmployeeData(employee){
-  document.getElementById('pimg').src = employee.img
-  document.getElementById('empId').value = employee.id
-  document.getElementById('pname').value = employee.firstName +" "+employee.lastName
- document.getElementById('fname').value = employee.firstName
- document.getElementById('lname').value = employee.lastName
- document.getElementById('email').value = employee.email
- document.getElementById('job-title-select').value = employee.jobTitle
- document.getElementById('office-select').value = employee.office
- document.getElementById('department-select').value = employee.department
- document.getElementById('phone-number').value = employee.phoneNumber
- document.getElementById('skype-id').value = employee.skypeId
-}
-
-
-
-
-
-function submitEmployeeForm() {
- 
-
-  const employee = getEmployeeData()
-  const empId = document.getElementById('empId').value
-  if(empId==""){
-    employee.setId(idCount++)
-    addEmployee(employee)
-    employeeData.push(employee)
-    
-  }else{
-    const index = findEmployeeIndexById(empId)
-    employee.setId(empId)
-    updateFilter(employeeData[index])
-    employeeData[index] = employee
-    refreshData()
-    const submitBtn = document.getElementById("submit")
-    submitBtn.style.display = "block"
-    const updateBtn = document.getElementById("update")
-    updateBtn.style.display = "none"
-    const imgSelect = document.getElementById("imgChoose")
-    imgSelect.required = true;
-  }
-  addFilter(employee)
-  closeForm()
-  
-  
-  
-}
-
-
-function refreshData(){
-  addEmployeesByList(employeeData)
-}
-
-
-
-
-
-function searchByKeyword(value) {
- 
-
-  const option = document.getElementById("filter-options").value
-  
-  if(value==""){
-    refreshData()
-  }
-  else if(option=="preferredname"){
-    const list = employeeData.filter((e) => toLowerCaseAndSearch(e.firstName,value) | toLowerCaseAndSearch(e.lastName,value))
-    
-      
-      addEmployeesByList(list)
-    
-    
-  }
-  else if("email"==option){
-    const list = employeeData.filter((e)=>toLowerCaseAndSearch(e.email,value))
-    
-      
-      addEmployeesByList(list)
-    
-   
-  }
-  else if("phno"==option){
-    const list = employeeData.filter((e)=>e.phoneNumber.indexOf(value)>-1)
-    
-      addEmployeesByList(list)
-    
-
-  }
-  else{
-    refreshData()
-  }
-  
-   document.getElementById('search-input').value=''
- 
-
- 
-}
-
-function hideNoEmployee(){
-  document.getElementById("no-employee").style.display ="none"
-  document.getElementById("employee-content").style.display ="grid"
-}
-
-
-function displayNoEmployee(){
-  document.getElementById("no-employee").style.display ="block"
-      document.getElementById("employee-content").style.display ="none"
-}
-
-function toLowerCaseAndSearch(element,value){
-  return element.toLowerCase().indexOf(value.toLowerCase())>-1
-
-}
-
-
-
-
-
-
-function clearSearch(){
-  document.getElementById('search-input').value=''
-  refreshData()
-}
