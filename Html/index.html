@@ -8,7 +8,7 @@
     
   </head>
   <body>
-    <div class="form-popup" id="addEmployeeForm">
+    <div class="form-popup" id="displayEmpForm">
       <form  id="employee-form" >
         <input type="hidden" value="" id="empId">
         <div class="chooseImg">
@@ -21,7 +21,7 @@
              <label for="fname">First Name:</label>
            </div>
            <div class="item-input">
-               <input id="fname" name="fname" onchange="onNameChange(event)" type="text" required>
+               <input id="fname" name="fname" onchange="pnameUpdate(event)" type="text" required>
 
            </div>
          </div>
@@ -31,7 +31,7 @@
              <label for="lname">Last Name:</label>
            </div>
            <div class="item-input">
-               <input onchange="onNameChange(event)" name="lname" id="lname" type="text" required>
+               <input onchange="pnameUpdate(event)" name="lname" id="lname" type="text" required>
           
            </div>
          </div>
@@ -198,7 +198,7 @@
               </div>
             </div>
             <div id="right-container">
-              <button id="addEmployee" type="button" onclick="openForm()">Add Employee</button>
+              <button id="displayEmp" type="button" onclick="openForm()">Add Employee</button>
             </div>
           </div>
         </div>
@@ -219,4 +219,3 @@
    <script src="index.js"></script>
   </body>
 </html>
- 
